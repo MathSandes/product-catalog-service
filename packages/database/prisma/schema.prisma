@@ -1,0 +1,58 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProductStatus {
+  PENDING
+  PROCESSING
+  PROCESSED
+  FAILED
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String
+  slug      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+}
+
+model Product {
+  id                  String        @id @default(uuid())
+  sku                 String        @unique
+  name                String
+  priceCents          Int
+  categoryId          String
+  category            Category      @relation(fields: [categoryId], references: [id])
+  status              ProductStatus @default(PENDING)
+  enrichedTitle             String?
+  enrichedDescription       String?
+  enrichedImageUrl          String?
+  enrichedExternalCategory  String?
+  enrichedRating            Float?
+  enrichedRatingCount       Int?
+  externalSourceId          Int?
+  externalSourceKey         String?
+  errorCode           String?
+  errorMessage        String?
+  lastAttemptAt       DateTime?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  @@index([status])
+  @@index([categoryId])
+  @@index([name])
+}
+
+model IdempotencyRecord {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  productId String
+  createdAt DateTime @default(now())
+}

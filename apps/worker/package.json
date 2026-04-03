@@ -1,0 +1,21 @@
+{
+  "name": "@catalog/worker",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
+    "test": "node --import tsx --test src/hash.test.ts"
+  },
+  "dependencies": {
+    "@catalog/database": "*",
+    "@catalog/shared": "*",
+    "bullmq": "^5.25.6",
+    "ioredis": "^5.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
