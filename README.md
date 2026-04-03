@@ -104,9 +104,11 @@ Desacopla o processamento pesado da requisição HTTP, **reduz latência** para 
 
 Com mais tempo: **SSE ou WebSocket** para status em tempo real; **OpenAPI** com schemas por rota; **`metadata` JSONB** para enriquecimentos variados; testes de integração (API + fila) e **CI** com lint + testes. Em alto tráfego: **réplicas** da API atrás de load balancer, **read replicas** ou cache (Redis) em listagens quentes, **vários workers** com particionamento da fila, rate limit e **WAF/API Gateway**, **observabilidade** (tracing, métricas, alertas), pool e índices no Postgres revisados, e fila com **dead-letter** e políticas de backoff por tipo de erro.
 
-### Demonstração
+### Demonstração em vídeo
 
-O edital prevê **vídeo curto opcional** ou apresentação na entrevista; pode ser gravado quando a solução estiver finalizada.
+Vídeo curto demonstrando o funcionamento do sistema (Docker, API, fila e front):
+
+https://drive.google.com/file/d/1gkAnYJGSmpOxErf21Uf6PINRUtXKIamU/view?usp=drive_link
 
 ---
 
